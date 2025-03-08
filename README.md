@@ -1,6 +1,7 @@
 
 
 ## Problem Statement
+![image](https://github.com/user-attachments/assets/5494cc09-8b52-467c-b69c-313ed7d3afd5)
 
 * When processing new files from an S3 bucket, many implementations rely on the LastModified timestamp to determine which files are new. However, this approach has several edge cases:
 
