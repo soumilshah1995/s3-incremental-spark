@@ -1,5 +1,31 @@
 
-![Screenshot 2025-03-08 at 8 43 55 AM](https://github.com/user-attachments/assets/755fb8fb-592b-499b-a4b4-a44daff0873a)
 
+## Problem Statement
+
+* When processing new files from an S3 bucket, many implementations rely on the LastModified timestamp to determine which files are new. However, this approach has several edge cases:
+
+* Clock Skew: If files are copied or moved, the timestamp might not reflect the actual arrival time.
+
+* Eventual Consistency: S3's eventual consistency model can cause delays, making some files appear out of order.
+
+* Overwrite Issues: If a file is updated in place, the modified timestamp changes, leading to duplicate or missing records.
+
+
+---------------
+
+
+## Solution: Manifest-Based Incremental Processing
+
+To ensure robust and reliable processing, we use a manifest-based approach:
+
+List all files in the raw data folder.
+
+Generate a manifest file with the file paths.
+
+Process files in the manifest using Apache Spark.
+
+Archive processed files to prevent reprocessing.
+
+Handle failures gracefully by moving failed manifests to an error folder.
 
 
